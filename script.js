@@ -20,7 +20,7 @@ searchButton.addEventListener('click', function(event) {
 // Функция для обработки начального запроса
 function processInitialRequest() {
     if (!titleInput.value) {
-        updateStatus('Пустой заголовок \nПожалуйста введите данные для поиска');
+        updateStatus('Пустой заголовок \nПожалуйста введите данные для поиска!!!');
         return;
     }
 
@@ -36,6 +36,10 @@ function processInitialRequest() {
     type = typeSelect.value;
     statusOutput.innerText = 'Загрузка...';
     const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films?order=RATING&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&type=${type}&keyword=${title}&page=1`;
+
+    // GSAP Плавное появление контейнера с результатами поиска
+    gsap.from(searchResultsContainer, { duration: 0.7, delay:0.4, opacity: 0, scale: 1, ease: "power2.inOut" });
+
     sendRequest(url);
 
     const cinemaCards = searchResultsContainer.querySelectorAll('.cinema-card');
@@ -111,8 +115,7 @@ function processDetails(cinemaFullInfo) {
         .replace(/^./, letter => letter.toUpperCase())}
 					<p class="year">Год выпуска: ${year}</p>
 					<p class="description">${description}</p>
-					<a href="${webUrl}" target="_blank" style="color: orange"> Ссылка на Кинопоиск</a>
-				   
+					<a href="${webUrl}" target="_blank" style="color: orange; text-decoration: none;">Ссылка на Кинопоиск</a>
 				</div>
 				<button style="color: azure">&times;</button>
 			</div>
@@ -130,8 +133,13 @@ function processDetails(cinemaFullInfo) {
     };
 
     document.querySelector('#cinema-full-card button').addEventListener('click', function() {
-        removeFixedContainer();
+    const cinemaFullCard = document.getElementById('cinema-full-card');
+
+    //Анимация GSAP плавного закрытия  cinema-full-card
+    gsap.to(cinemaFullCard, { duration: 0.4, opacity: 0, y: -11, scale: 0, ease: "power2.out", onComplete: removeFixedContainer });
+
     }, { once: true });
+
 
     fixedContainer.addEventListener('click', function(event) {
         if (event.target.matches('#fixed-container')) {
@@ -139,10 +147,11 @@ function processDetails(cinemaFullInfo) {
         }
     }, { once: true });
 
-    // Функция эффекта всплывающего окна
+   // Функция эффекта всплывающего окна с использованием GSAP
     function showCinemaFullCard() {
         const cinemaFullCard = document.getElementById('cinema-full-card');
-        cinemaFullCard.classList.add('show');
+        gsap.set(cinemaFullCard, { scale: 0, opacity: 1 });
+        gsap.to(cinemaFullCard, { duration: 0.2, opacity: 1, y: -50, scale: 1, ease: "power2.out" });
     }
 
     showCinemaFullCard();

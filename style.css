@@ -4,7 +4,7 @@
 }
 
 body {
-    max-width: 1200px;
+    max-width: fit-content;
     margin: 0 auto;
     background-color: rgb(9, 9, 9);
     background-image: url("https://img4.goodfon.ru/original/1920x1080/3/90/pennywise-film-ono-demon-kloun.jpg");
@@ -12,10 +12,17 @@ body {
     background-size: cover ;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 h1 {
-    font-size: 50px;
+    font-size: 56px;
     text-align: center;
-    font-family: monospace;
+    font-family: "Monoton", sans-serif;
+    font-style: normal;
+    letter-spacing: 1px;
+    font-weight: 500;
     color: #a60101;
     padding-left: 15px;
     animation: textColorChange 2s infinite;
@@ -34,13 +41,20 @@ h1 {
 }
 
 #search-form-container {
-    width: 320px;
+    width: 370px;
     margin: 40px auto;
-    padding: 18px;
-    border: 5px dashed rgba(243, 243, 243, 0.78);
+    padding: 20px;
+    border: 5px dotted rgba(243, 243, 243, 0.78);
     background-color: rgba(101, 5, 49, 0.51);
     box-shadow: 2px 2px 10px -10px black;
     text-align: center;
+    border-radius: 20px;
+}
+
+#search-form-container label{
+    font-family: "Rubik Bubbles", system-ui;
+    letter-spacing: 1px;
+    
 }
 
 #search-form-container {
@@ -66,6 +80,7 @@ h1 {
     width: 64%;
     padding: 2px;
     font-size: 14px;
+    border-radius: 7px;
 }
 
 #search-button {
@@ -73,14 +88,19 @@ h1 {
     background-color: #ffffff;
     margin: 26px auto 10px;
     padding: 4px 16px;
-    border-radius: 4px;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 217, 0, 0.67);
     cursor: pointer;
-    transition: background-color 0.6s ease;
+    font-size: 0.9em;
+    scale: 1;
+    transition: background-color 0.6s ease, scale 0.3s ease-in-out;
 }
 
 #search-button:hover {
     background-color: darkred;
     color: azure;
+    scale: 0.9;
 }
 
 #status-output {
@@ -89,7 +109,8 @@ h1 {
     margin: 16px auto;
     text-align: center;
     color: rgba(255, 255, 255, 0.9);
-    font-family: monospace;
+    font-family: "Stick", sans-serif;
+    font-style: normal;
     font-size: 1rem;
 }
 
@@ -105,19 +126,20 @@ h1 {
     display: flex;
     width: 300px;
     height: 160px;
-    margin: 12px;
-    padding: 10px;
-    border: 3px outset rgba(250, 238, 206, 0.56);
-    border-radius: 4px;
+    margin: 20px;
+    padding: 20px;
+    border: 3px outset rgba(252, 252, 252, 0.609);
+    border-radius: 17px;
     background-color: rgba(161, 8, 23, 0.77);
     box-shadow: 2px 2px 10px -10px black;
     cursor: pointer;
+    font-style: normal;
     color: rgba(255, 255, 255, 0.88);
     transition: background-color 0.3s linear;
 }
 
 .cinema-card:hover {
-    background-color: #ff0000; /* Замените на желаемый цвет */
+    background-color: #ff0000; 
 }
 
 .cinema-card .poster {
@@ -166,8 +188,8 @@ h1 {
     justify-content: center;
     margin: 150px auto 0;
     padding: 20px;
-    border: 3px outset rgba(250, 238, 206, 0.56);
-    border-radius: 6px;
+    border: 3px outset rgba(252, 252, 252, 0.609);
+    border-radius: 20px;
     background-color: rgba(161, 8, 23, 0.95);
     color: rgba(255, 255, 255, 0.88);
     box-shadow: 3px 3px 10px -8px black;
@@ -175,10 +197,6 @@ h1 {
     width: 90%;
     opacity: 0;
     transition: opacity 0.6s;
-}
-
-#cinema-full-card.show {
-    opacity: 1;
 }
 
 #cinema-full-card .poster {

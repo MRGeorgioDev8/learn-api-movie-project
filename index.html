@@ -5,11 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Rubik+Bubbles&family=Stick&family=Viaoda+Libre&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Cinema Finder</title>
 </head>
-<body><h1>Cinema Finder</h1>
-<div id="search-form-container">
+<body>
+<h1 id="h1-animation">Cinema Finder</h1>
+<div id="search-form-container" class="animation-search">
     <div class="control-container">
         <label for="title">Заголовок:</label>
         <input
@@ -32,6 +36,8 @@
     <button id="search-button">Поиск</button>
 </div>
 <p id="status-output"></p>
-<div id="search-results-container"></div>
+<div id="search-results-container" class="animation-result"></div>
+<script src="animation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.11.2/dist/gsap.min.js"></script>
 </body>
 </html>
