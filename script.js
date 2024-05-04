@@ -135,11 +135,16 @@ function processDetails(cinemaFullInfo) {
     document.querySelector('#cinema-full-card button').addEventListener('click', function() {
     const cinemaFullCard = document.getElementById('cinema-full-card');
 
-    //Анимация GSAP плавного закрытия  cinema-full-card
-    gsap.to(cinemaFullCard, { duration: 0.4, opacity: 0, y: -11, scale: 0, ease: "power2.out", onComplete: removeFixedContainer });
+    // Получаем высоту контейнера
+    const containerHeight = cinemaFullCard.offsetHeight;
+
+    // Анимация GSAP плавного закрытия cinema-full-card
+    gsap.to(cinemaFullCard, { duration: 0.4, opacity: 0, y: -11, scaleY: 0, ease: "power2.out", onComplete: removeFixedContainer });
+
+    // Добавляем анимацию для уменьшения высоты контейнера сверху и снизу
+    gsap.to(cinemaFullCard, { duration: 11, height: 0, top: containerHeight / 2, bottom: containerHeight / 2, ease: "power1.in" });
 
     }, { once: true });
-
 
     fixedContainer.addEventListener('click', function(event) {
         if (event.target.matches('#fixed-container')) {
